@@ -1,0 +1,21 @@
+name: List Directory and Upload File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: List directory contents
+      run: ls > directory_contents.txt
+
+    - name: Upload Resulting File as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: directory-contents
+        path: directory_contents.txt
